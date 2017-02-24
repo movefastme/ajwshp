@@ -44,7 +44,7 @@ if (!$res) {
                     <?= $res['province'] ?>
                 </div>
             </div>
-            <div>
+            <div class="formInput">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">วันเวลาที่เข้า</label>
                     <div class="col-sm-9">
@@ -72,7 +72,7 @@ if (!$res) {
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">จำนวนเงินค่าจอด</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" id="price">
                         <?= $res['price'] ?>
 >>>>>>> e9ea2abd29027bf196f244a980adefe834a3af77
                     </div>
@@ -85,7 +85,7 @@ if (!$res) {
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-10">
-                        <button type="submit" class="btn btn-default">คำนวณเงินทอน</button>
+                        <button id="submit" type="submit" class="btn btn-default">คำนวณเงินทอน</button>
                     </div>
                 </div>
             </div>
@@ -93,16 +93,17 @@ if (!$res) {
                 <div class="form-group">
                     <label class="col-sm-3 control-label">จำนวนชั่วโมงที่จอด</label>
                     <div class="col-sm-9">
+                        <?= $res['hour'] ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">จำนวนเงินที่รับ</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" id="inputPay">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">จำนวนเงินทอน</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9" id="change">
                     </div>
                 </div>
                 <div class="form-group">
@@ -133,6 +134,28 @@ if (!$res) {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
+        $('#submit').click(function () {
+            save();
+            return false;
+        });
+        function save() {
+            $('#inputPay').html($('input[name=pay]').val());
+            $('#change').html(parseFloat($('input[name=pay]').val()) - parseFloat($('#price').html()));
+            $.ajax({
+                url: 'save_history.php',
+                type: 'POST',
+                dataType: 'JSON',
+                data: {
+                    price: $('#price').html(),
+                    pay: $('input[name=pay]').val(),
+                    change: parseFloat($('input[name=pay]').val()) - parseFloat($('#price').html())
+                },
+                success: function () {
+                    $('.formInput').hide();
+                    $('.result').show();
+                }
+            });
+        }
 
     });
 </script>
