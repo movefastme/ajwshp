@@ -42,7 +42,7 @@
  				if (data.status == false) {
  					alert('ไม่พบหมายเลขทะเบียน '+car_id_val+ ' ในระบบกรุณาตรวจสอบอีกครั้ง');
  				}else{
- 					window.location = 'index.php?parking_id='+data.return_parking_id;
+ 					window.location = 'detail.php?parking_id='+data.return_parking_id;
  				}
  			},'json');
  			
