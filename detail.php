@@ -31,7 +31,7 @@ if (!$res) {
     ?>
 
     <div class="col-md-6 col-sm-offset-3">
-        <form class="form-horizontal">
+        <div class="form-horizontal">
             <div class="form-group">
                 <label class="col-sm-3 control-label">หมายเลขทะเบียนรถ</label>
                 <div class="col-sm-9">
@@ -117,7 +117,7 @@ if (!$res) {
                     <div class="">10.00 บาท จำนวน <span id="bank10"></span> ฉบับ</div>
                 </div>
             </div>
-        </form>
+        </div>
 
     </div>
 <?php } ?>
