@@ -27,7 +27,8 @@ Class Parking {
         $sql = "SELECT parking_id FROM parking_log WHERE car_id = '{$car_id}' ORDER BY parking_id DESC LIMIT 1";
         $result = $this->conn->query($sql);
 
-        return mysqli_fetch_assoc($result);
+        $return = mysqli_fetch_assoc($result);
+        return $return['parking_id'];
     }
 
     public function get_detail_parking($parking_id = '') {
@@ -65,7 +66,7 @@ Class Parking {
                 . " AND change = '{$data['change']}"
                 . " WHERE parking_id = '{$parking_id}'";
         $return = $this->conn->query($sql);
-        
+
         $return['seperate_change'] = seperate_change($data['change']);
         return $return;
     }
