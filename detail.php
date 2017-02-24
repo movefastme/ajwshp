@@ -11,7 +11,7 @@
         background: url('http://wallpaper-gallery.net/images/pink-wallpaper/pink-wallpaper-12.gif') 100%;
         /* background-repeat: no-repeat; */
     }
-    form{
+    .form-horizontal{
         background-color: #FFF;
         border-radius: 25px;
         padding: 10px;
@@ -65,9 +65,7 @@ if (!$res) {
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">จำนวนเงินค่าจอด</label>
-                    <div class="col-sm-9" id="price">
-                        <?= $res['price'] ?>
-                    </div>
+                    <div class="col-sm-9" id="price"><?= $res['price'] ?></div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">รับเงิน</label>
@@ -138,8 +136,8 @@ if (!$res) {
                 type: 'POST',
                 dataType: 'JSON',
                 data: {
-                    price: $('#price').html(),
-                    pay: $('input[name=pay]').val(),
+                    price: parseFloat($('#price').html()),
+                    pay: parseFloat($('input[name=pay]').val()),
                     change: parseFloat($('input[name=pay]').val()) - parseFloat($('#price').html())
                 },
                 success: function () {
