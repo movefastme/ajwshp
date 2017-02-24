@@ -6,7 +6,7 @@ Class Parking {
 
     function __construct() {
         //connect DB
-        $servername = "103.253.147.164/";
+        $servername = "103.253.147.164";
         $username = "root";
         $password = "xitgmLwmp";
         $dbname = "parking";
