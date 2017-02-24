@@ -60,13 +60,14 @@ Class Parking {
     }
 
     public function save_history($parking_id, $data) {
-        $sql = "UPDATE parking_log SET"
-                . " AND price = '{$data['price']}'"
-                . " AND pay = '{$data['pay']}'"
-                . " AND change = '{$data['change']}"
-                . " WHERE parking_id = '{$parking_id}'";
-        $return = $this->conn->query($sql);
-
+//        $sql = "UPDATE parking_log SET"
+//                . " AND price = '{$data['price']}'"
+//                . " AND pay = '{$data['pay']}'"
+//                . " AND change = '{$data['change']}"
+//                . " WHERE parking_id = '{$parking_id}'";
+//        $return = $this->conn->query($sql);
+        
+        $return = $data;
         $return['seperate_change'] = seperate_change($data['change']);
         return $return;
     }
