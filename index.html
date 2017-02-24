@@ -39,11 +39,12 @@
  		}else{
  			$.post('process.php', {car_id: car_id_val}, function(data, textStatus, xhr) {
  				/*optional stuff to do after success */
- 				if (data.status == false) {
- 					alert('ไม่พบหมายเลขทะเบียน '+car_id_val+ ' ในระบบกรุณาตรวจสอบอีกครั้ง');
- 				}else{
- 					window.location = 'detail.php?parking_id='+data.return_parking_id;
- 				}
+ 				console.log(data.status);
+ 				// if (data.status == false) {
+ 				// 	alert('ไม่พบหมายเลขทะเบียน '+car_id_val+ ' ในระบบกรุณาตรวจสอบอีกครั้ง');
+ 				// }else{
+ 				// 	window.location = 'detail.php?parking_id='+data.return_parking_id;
+ 				// }
  			},'json');
  			
  		}
