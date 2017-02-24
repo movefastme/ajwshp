@@ -35,9 +35,17 @@
 	$(document).delegate('#btn-get-data', 'click', function(event) {
  		car_id_val = $.trim($('#car_id_val').val());
  		if (car_id_val == '') {
- 			alert('ไม่พบหมายเลขทะเบียน '+car_id_val+ ' ในระบบกรุณาตรวจสอบอีกครั้ง');
+ 			alert('ไม่พบหมายเลขทะเบียน ในระบบกรุณาตรวจสอบอีกครั้ง');
  		}else{
- 			window.location = 'index.php?parking_id=1';
+ 			$.post('process.php', {car_id: car_id_val}, function(data, textStatus, xhr) {
+ 				/*optional stuff to do after success */
+ 				if (data.status == false) {
+ 					alert('ไม่พบหมายเลขทะเบียน '+car_id_val+ ' ในระบบกรุณาตรวจสอบอีกครั้ง');
+ 				}else{
+ 					window.location = 'index.php?parking_id='+data.return_parking_id;
+ 				}
+ 			},'json');
+ 			
  		}
 	});
 </script>
