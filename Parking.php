@@ -61,12 +61,52 @@ Class Parking {
 
     public function save_history($parking_id, $data) {
         $sql = "UPDATE parking_log SET"
-                . " check_out = '{" . date('Y-m-d H:i:s') . "}'"
                 . " AND price = '{$data['price']}'"
                 . " AND pay = '{$data['pay']}'"
                 . " AND change = '{$data['change']}"
                 . " WHERE parking_id = '{$parking_id}'";
-        return $this->conn->query($sql);
+        $return = $this->conn->query($sql);
+        
+        $return['seperate_change'] = seperate_change($data['change']);
+        return $return;
+    }
+
+    public function seperate_change($change) {
+        $bank500 = 0;
+        $bank100 = 0;
+        $bank50 = 0;
+        $bank20 = 0;
+        $bank10 = 0;
+
+        if ($change >= 500) {
+            $bank500 = floor($change / 500);
+            $change -= $change - (500 * $bank500);
+        }
+        if ($change >= 100) {
+            $bank100 = floor($change / 100);
+            $change -= $change - (100 * $bank100);
+        }
+        if ($change >= 50) {
+            $bank50 = floor($change / 50);
+            $change -= $change - (50 * $bank50);
+        }
+        if ($change >= 20) {
+            $bank20 = floor($change / 20);
+            $change -= $change - (20 * $bank20);
+        }
+        if ($change >= 10) {
+            $bank10 = floor($change / 10);
+            $change -= $change - (10 * $bank10);
+        }
+
+
+        return [
+            'bank500' => $bank500,
+            'bank100' => $bank100,
+            'bank50' => $bank50,
+            'bank20' => $bank20,
+            'bank10' => $bank10,
+        ];
     }
 
 }
