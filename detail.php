@@ -136,9 +136,12 @@ if (!$res) {
                 type: 'POST',
                 dataType: 'JSON',
                 data: {
-                    price: parseFloat($('#price').html()),
-                    pay: parseFloat($('input[name=pay]').val()),
-                    change: parseFloat($('input[name=pay]').val()) - parseFloat($('#price').html())
+                    parking_id: '<?= $_GET['parking_id'] ?>',
+                    data: {
+                        price: parseFloat($('#price').html()),
+                        pay: parseFloat($('input[name=pay]').val()),
+                        change: parseFloat($('input[name=pay]').val()) - parseFloat($('#price').html())
+                    }
                 },
                 success: function () {
                     $('.formInput').hide();
