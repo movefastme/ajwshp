@@ -30,6 +30,27 @@
 
 </style>
 
+<script type="text/javascript">
+	var car_id_val = '';
+	$(document).delegate('#btn-get-data', 'click', function(event) {
+ 		car_id_val = $.trim($('#car_id_val').val());
+ 		if (car_id_val == '') {
+ 			alert('ไม่พบหมายเลขทะเบียน ในระบบกรุณาตรวจสอบอีกครั้ง');
+ 		}else{
+ 			$.post('process.php', {car_id: car_id_val}, function(data, textStatus, xhr) {
+ 				/*optional stuff to do after success */
+ 				console.log(data.status);
+ 				// if (data.status == false) {
+ 				// 	alert('ไม่พบหมายเลขทะเบียน '+car_id_val+ ' ในระบบกรุณาตรวจสอบอีกครั้ง');
+ 				// }else{
+ 				// 	window.location = 'detail.php?parking_id='+data.return_parking_id;
+ 				// }
+ 			},'json');
+ 			
+ 		}
+	});
+</script>
+
 </head>
 <body>
 
@@ -40,11 +61,11 @@
 
 		<form class="text-center col-md-6 col-md-offset-3" >
 		  <div class="form-group">
-		    <label for="exampleInputEmail1" ><h1>กรอกหมายเลขทะเบียนรถ</h1></label><br><br>
-		    <input type="email" class="form-control input-lg " id="exampleInputEmail1" placeholder="กรุณากรอกหมายเลขทะเบียนรถ">
+		    <label for="car_id" ><h1>กรอกหมายเลขทะเบียนรถ</h1></label><br><br>
+		    <input type="text" class="form-control input-lg " id="car_id_val" name="car_id_val" placeholder="กรุณากรอกหมายเลขทะเบียนรถ" value="">
 		  </div>
 		  
-		  <button type="submit" class="btn btn-default btn-primary btn-lg">   ค้นหา   </button> 
+		  <button id="btn-get-data" type="button" class="btn btn-default btn-primary btn-lg">   ค้นหา   </button> 
 		</form>
   		
   	</div>

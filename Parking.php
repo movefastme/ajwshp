@@ -24,7 +24,7 @@ Class Parking {
         if (!$car_id) {
             return false;
         }
-        $sql = "SELECT parking_id FROM parking_log WHERE car_id = '{$car_id} ORDER BY parking_id DESC LIMIT 1'";
+        $sql = "SELECT parking_id FROM parking_log WHERE car_id = '{$car_id}' ORDER BY parking_id DESC LIMIT 1";
         $result = $this->conn->query($sql);
 
         return mysqli_fetch_assoc($result);
@@ -36,7 +36,6 @@ Class Parking {
         }
         $sql = "SELECT * FROM parking_log WHERE parking_id = '{$parking_id}'";
         $result = $this->conn->query($sql);
-
 
 
         $return = mysqli_fetch_assoc($result);

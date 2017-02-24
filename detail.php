@@ -48,12 +48,19 @@ if (!$res) {
                 <div class="form-group">
                     <label class="col-sm-3 control-label">วันเวลาที่เข้า</label>
                     <div class="col-sm-9">
+<<<<<<< HEAD
+                        <?=$res['check_in']?>
+=======
                         <?= $res['check_in'] ?>
+>>>>>>> e9ea2abd29027bf196f244a980adefe834a3af77
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">วันเวลาที่ออก</label>
                     <div class="col-sm-9">
+<<<<<<< HEAD
+                        <?=$res['check_out']?>
+=======
                         <?= $res['check_out'] ?>
                     </div>
                 </div>
@@ -67,6 +74,7 @@ if (!$res) {
                     <label class="col-sm-3 control-label">จำนวนเงินค่าจอด</label>
                     <div class="col-sm-9" id="price">
                         <?= $res['price'] ?>
+>>>>>>> e9ea2abd29027bf196f244a980adefe834a3af77
                     </div>
                 </div>
                 <div class="form-group">
