@@ -37,7 +37,16 @@ Class Parking {
         $sql = "SELECT * FROM parking_log WHERE parking_id = '{$parking_id}'";
         $result = $this->conn->query($sql);
 
-        return mysqli_fetch_assoc($result);
+
+
+        $return = mysqli_fetch_assoc($result);
+        if ($return) {
+            $hour = ceil((strtotime($return['check_out']) - strtotime($return['check_in'])) / 60 / 60);
+            $return['hour'] = $hour;
+            $return['price'] = $this->calculate_price($hour);
+        }
+
+        return $return;
     }
 
     public function calculate_price($hour) {

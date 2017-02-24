@@ -3,7 +3,7 @@
 require_once ('Parking.php');
 
 $parking = new Parking();
-$res = $parking->get_detail_parking($_POST['parking_id']);
+$res = $parking->save_history($_POST['parking_id'], $_POST['data']);
 
 echo json_encode([
     'status' => true,
